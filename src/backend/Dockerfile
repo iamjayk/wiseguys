@@ -14,4 +14,4 @@ RUN mkdir -p /data
 
 EXPOSE 5000
 
-CMD ["gunicorn", "-w", "1", "-b", "[::]:5000", "main:app"]
+CMD ["gunicorn", "-w", "1", "--timeout", "120", "--keep-alive", "2", "-b", "[::]:5000", "main:app"]
