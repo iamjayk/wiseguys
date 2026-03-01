@@ -1,17 +1,13 @@
 import re
-import os
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta, timezone
 
 import jwt
-from flask import Blueprint, request, jsonify
-from werkzeug.security import generate_password_hash, check_password_hash
-
+from config import JWT_EXPIRY_MINUTES, SECRET_KEY
 from db import create_user, get_user_by_email
+from flask import Blueprint, jsonify, request
+from werkzeug.security import check_password_hash, generate_password_hash
 
 auth_bp = Blueprint("auth", __name__, url_prefix="/auth")
-
-SECRET_KEY = os.environ.get("SECRET_KEY") or "dev-secret-change-in-production"
-JWT_EXPIRY_MINUTES = int(os.environ.get("JWT_EXPIRY_MINUTES", 60 * 24 * 7))  # 7 days
 
 
 def _user_to_json(row: dict) -> dict:

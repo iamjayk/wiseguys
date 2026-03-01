@@ -1,11 +1,9 @@
-import os
 from typing import Any
 
 import jwt
+from config import SECRET_KEY
 from flask import jsonify, request
 from strawberry.flask.views import GraphQLView
-
-SECRET_KEY = os.environ.get("SECRET_KEY") or "dev-secret-change-in-production"
 
 
 class AuthenticatedGraphQLView(GraphQLView):
