@@ -1,0 +1,10 @@
+# SQLite database (created and seeded on first run)
+*.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.venv/
+venv/

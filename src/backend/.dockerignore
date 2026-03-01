@@ -1,0 +1,14 @@
+# SQLite database (created at runtime via Docker volume)
+*.db
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+
+# Environment files
+.env

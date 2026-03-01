@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./src/backend
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_PATH: /data/characters.db
+      SECRET_KEY: dev-secret-change-me
+      JWT_EXPIRY_MINUTES: "10080"
+      CORS_ORIGINS: "http://localhost:3000,http://127.0.0.1:3000"
+    volumes:
+      - sqlite_data:/data
+
+  frontend:
+    build:
+      context: ./src/frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      NODE_ENV: development
+      NEXT_PUBLIC_GRAPHQL_URI: http://backend:5000/graphql
+
+volumes:
+  sqlite_data:
